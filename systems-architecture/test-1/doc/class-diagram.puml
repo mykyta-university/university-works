@@ -1,0 +1,59 @@
+@startuml class-diagram
+
+package npc {
+    interface NPC {
+        + void sayHello(Player player)
+    }
+
+    abstract class NPCDecorator {
+        # NPC npc
+
+        + NPCDecorator(NPC npc)
+        + void sayHello(Player player)
+    }
+
+    interface Tradable {
+        + void startTradWith(Player player)
+    }
+
+    class TradableNPCDecorator {
+        + TradableNPCDecorator(NPC npc)
+        + void sayHello(Player player)
+        + void startTradWith(Player player)
+    }
+
+    class Villager {
+        - String name
+
+        + Villager(String name)
+        + void sayHello(Player player)
+    }
+}
+
+package player {
+    class Builder {
+        - String name
+
+        + Builder(String name)
+        + String getName()
+    }
+
+    interface Player {
+        + String getName()
+    }
+}
+
+class Main {
+    + void main(String[] args)
+}
+
+NPCDecorator ..> NPC
+TradableNPCDecorator --> NPCDecorator
+TradableNPCDecorator ..> Tradable
+Villager ..> NPC
+Builder ..> Player
+NPCDecorator *-- NPC
+Main *-- Player
+Main *-- NPCDecorator
+Main *-- NPC
+@enduml
