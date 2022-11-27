@@ -1,3 +1,7 @@
+/*
+ * Some code was taken from https://drive.google.com/file/d/1TWEiZ-7LOKVC5IeI7e-g4-rp27I0S0gf/view
+ */
+
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
