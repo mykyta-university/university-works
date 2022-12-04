@@ -1,16 +1,23 @@
 package com.mymyka.npc;
 
-import com.mymyka.player.Player;
-
-public abstract class NPCDecorator implements NPC {
-    protected NPC npc;
+public abstract class NPCDecorator extends NPC {
+    private NPC npc;
 
     public NPCDecorator(NPC npc) {
         this.npc = npc;
     }
 
     @Override
-    public void sayHello(Player player) {
-        npc.sayHello(player);
+    public String getName() {
+        return npc.getName();
+    }
+
+    @Override
+    public void setName(String name) {
+        npc.setName(name);
+    }
+
+    public void spawn() {
+        npc.spawn();
     }
 }
