@@ -1,0 +1,46 @@
+@startuml class-diagram
+
+abstract class NPC {
+        + NPC(String name)
+        + spawn()
+    }
+
+    abstract class NPCDecorator {
+        + NPCDecorator(NPC npc)
+        + spawn()
+    }
+
+    class SnowNPCDecorator {
+        + SnowNPCDecorator(NPC npc)
+        + spawn()
+    }
+
+    class TradableNPCDecorator {
+        + TradableNPCDecorator(NPC npc)
+        + spawn()
+    }
+
+    class Spawner {
+        + spawn(NPC npc)
+    }
+
+    class Main {
+        + main(String[] args)
+    }
+
+    class TraderNPC {
+        + TraderNPC(String name)
+        + spawn()
+    }
+
+NPCDecorator --> NPC
+SnowNPCDecorator --> NPCDecorator
+TradableNPCDecorator --> NPCDecorator
+TraderNPC --> NPC
+
+NPCDecorator *-- NPC
+
+Spawner o.. NPC
+
+Main *-- NPCDecorator
+@enduml
