@@ -1,4 +1,6 @@
-#include <stdio.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <time.h>
 #include "dot.h"
 
 int size;
@@ -13,8 +15,6 @@ void print_space(Space * space) {
     }
     printf("_Dots_\n");
 }
-
-
 
 int main() {
     srand(time(NULL));

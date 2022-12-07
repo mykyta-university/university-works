@@ -81,7 +81,6 @@ int main(int argc, char ** argv) {
                 putenv(optarg);
                 break;
             case 'a':
-                printf("\nd--\n");
                 assign_variable_name = malloc(strlen(optarg) * sizeof(char));
                 strcpy(assign_variable_name, optarg);
                 break;
@@ -97,8 +96,6 @@ int main(int argc, char ** argv) {
                 }
                 setenv(assign_variable_name, assign_variable_value, 1);
                 environment_variable_print(assign_variable_name);
-                //free(assign_variable_name);
-                //free(assign_variable_value);
                 break;
             case 'd':
                 unsetenv(optarg);
@@ -158,52 +155,3 @@ int main(int argc, char ** argv) {
 
 
 
-
-//#include <unistd.h>
-//#include <stdlib.h>
-//#include <stdio.h>
-
-//int main(int argc, char ** argv) {
-//    char * opts = "a:b:c:";
-//    int n_opt;
-//
-//    while ((n_opt = getopt(argc, argv, opts)) != -1) {
-//        switch (n_opt) {
-//            case 'a':
-//                printf("\nAAAAA: %s\n", optarg);
-//                break;
-//            case 'b':
-//                printf("\nBBBBB: %s\n", optarg);
-//                break;
-//            case 'c':
-//                printf("\nC: %s\n", optarg);
-//                break;
-//        }
-//    }
-//    return 0;
-//}
-
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <unistd.h>
-//#include <getopt.h>
-//
-//int main(int argc, char ** argv) {
-//    int c;
-//
-//    const struct option long_opt[] = {
-//            {"aflag", 1, 0, 'a'},
-//            {NULL,0,NULL,0}
-//    };
-//
-//    while ((c = getopt_long(argc, argv, "a:", long_opt, NULL)) != -1){
-//        switch( c ){
-//            case 'a':
-//                printf("\nAAAAA: %s\n", optarg);
-//                break;
-//            default:
-//                printf("\n___\n");
-//                return(-1);
-//        }
-//    }
-//}

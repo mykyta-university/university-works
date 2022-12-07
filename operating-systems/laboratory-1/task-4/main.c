@@ -3,14 +3,11 @@
 
 static void print_arraylist(ArrayList * list) {
     printf("[");
-    for (int index = 0; index < list->size; ++index) {
+    for (int index = 0; index < arraylist_size(list); ++index) {
         printf(" %d,", *((int*) arraylist_get(list, index)));
     }
     printf("]");
 }
-
-
-
 
 int main() {
     ArrayList * arrayList = arraylist_create(2);
@@ -77,5 +74,3 @@ int main() {
                                                     printf("\n");
     return 0;
 }
-
-

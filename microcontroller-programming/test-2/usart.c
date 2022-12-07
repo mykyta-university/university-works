@@ -32,7 +32,7 @@ void init() {
     USART_InitStruct.USART_Parity = USART_Parity_No;
     USART_InitStruct.USART_HardwareFlowControl =
             USART_HardwareFlowControl_None;
-    USART_InitStruct.USART_Mode = USART_Mode_Rx;
+    USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
     USART_Init(USART1, &USART_InitStruct);
     USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
 
@@ -48,7 +48,7 @@ void init() {
 void USART1_IRQHandler(void){
     if( USART_GetITStatus(USART1, USART_IT_RXNE) ){
         USART_ClearITPendingBit(USART1,
-                                USART_IT_RXNE); static uint8_t cnt = 0;
+                                USART_IT_RXNE);
         uint8_t t = USART_ReceiveData(USART1);
         command = t;
     }

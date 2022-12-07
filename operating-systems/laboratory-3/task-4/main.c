@@ -29,7 +29,7 @@ void manual_print() {
            "команду оболонки clear для очишення экрану).\n");
 }
 
-int main() {
+int main(int argc, char ** argv) {
     int option_next;
     char * options_short = "hb:";
     const struct option options_long[] = {
@@ -39,5 +39,50 @@ int main() {
     };
     char * assign_variable_name = NULL;
     char * assign_variable_value = NULL;
+
     size_t buffer_size = 0;
+
+    char * input_buffer;
+    int input_buffer_size;
+    while ((option_next = getopt_long(argc, argv, options_short, options_long, NULL)) != -1) {
+        switch (option_next) {
+            case 'h':
+                manual_print();
+                exit(1);
+            case 'b':
+                printf("\nBuffer size: %s\n", optarg);
+                input_buffer_size = atoi(optarg);
+                buffer_size = input_buffer_size;
+                break;
+            default:
+                break;
+        }
+    }
+
+    char * user_login = getlogin();
+    printf("\nUser: %s\n", user_login);
+
+    char * command = "command";
+
+    size_t char_amount;
+    char * buffer;
+
+    if  (input_buffer_size == 0) {
+        input_buffer_size = 127;
+    }
+
+    buffer = malloc(buffer_size * sizeof(char));
+    command = buffer;
+    while (strcmp(command, "stop\n") != 0) {
+        printf("\n[%s]$ ", user_login);
+        char_amount = getline(&buffer, &buffer_size, stdin);
+        if  (strcmp(buffer, "stop\n") == 0) {
+            continue;
+        }
+        system(buffer);
+    }
+    printf("\nWait 3 seconds...\n");
+    sleep(3);
+    system("clear");
+    printf("\n");
 }

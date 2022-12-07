@@ -18,7 +18,8 @@ void delay(int count);
 void SPI1_IRQHandler(void) {
     int res;
     if (SPI_I2S_GetITStatus(SPI1, SPI_I2S_IT_RXNE) != RESET)
-    { SPI_I2S_ClearITPendingBit(SPI1, SPI_I2S_IT_RXNE);
+    {
+        SPI_I2S_ClearITPendingBit(SPI1, SPI_I2S_IT_RXNE);
         res = SPI_I2S_ReceiveData(SPI1);
     }
 }
@@ -95,6 +96,7 @@ void init(void) {
     SPI_Cmd(SPI1, ENABLE);
     SPI_Cmd(SPI2, ENABLE);
 }
+
 void delay(int count) {
     while(--count);
 }
